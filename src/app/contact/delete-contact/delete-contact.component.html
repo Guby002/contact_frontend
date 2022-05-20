@@ -1,2 +1,18 @@
-<a routerLink="delete" class="btn btn-sm btn-success mb-2">Add User</a>
-<p>delete-contact works!</p>
+<div class="card">
+  <h4 class="card-header">Login</h4>
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label>Id</label>
+          <input type="text" formControlName="id" class="form-control" />
+          <div *ngIf="submitted && f.id.errors" class="invalid-feedback">
+            <div *ngIf="f.id.errors.required">Username is required</div>
+          </div>
+        </div>
+      <button type="submit" class="btn btn-primary" >
+        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+        Delete
+      </button>
+    </form>
+  </div>
+</div>

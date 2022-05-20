@@ -1,18 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router, RouterModule} from '@angular/router';
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {AccountService, AlertService} from "../../_services";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ContactService} from "../../_services/contact.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import { AlertService} from "../../_services";
 
 @Component({
-  selector: 'app-delete-contact',
   templateUrl: './delete-contact.component.html',
-  styleUrls: ['./delete-contact.component.css']
 })
 export class DeleteContactComponent implements OnInit {
-
   form: FormGroup;
-  id: string;
-  isAddMode: boolean;
   loading = false;
   submitted = false;
 
@@ -20,11 +16,29 @@ export class DeleteContactComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private accountService: AccountService,
+    private contactService: ContactService,
     private alertService: AlertService
-  ) {}
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.form = this.formBuilder.group({
+      id: ['', Validators.required],
+    });
   }
-
+  get f() { return this.form.controls; }
+  onSubmit() {
+    this.submitted = true;
+    console.log("Form Submitted!");
+    if (this.form.valid) {
+      console.log("Form Submitted!");
+    }
+    // reset alerts on submit
+    this.alertService.clear();
+    // stop here if form is invalid
+    if (this.form.invalid) {
+      return;
+    }
+    this.loading = true;
+    this.contactService.delete(this.f.id.value)
+  }
 }

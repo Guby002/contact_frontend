@@ -1,20 +1,21 @@
-﻿<!-- nav -->
+﻿<!--
 <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="user">
     <div class="navbar-nav">
         <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
         <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
-        <a class="nav-item nav-link" routerLink="/contact" routerLinkActive="active">Contact</a>
+        <a class="nav-item nav-link" routerLink="/list-contact" routerLinkActive="active">ContactList</a>
+      <a class="nav-item nav-link" routerLink="/delete-contact" routerLinkActive="active">DeleteContact</a>
         <a class="nav-item nav-link" (click)="logout()">Logout</a>
     </div>
 </nav>
 
-<!-- main app container -->
+
 <div class="app-container" [ngClass]="{ 'bg-light': user }">
     <alert></alert>
     <router-outlet></router-outlet>
 </div>
 
-<!-- credits -->
+
 <div class="text-center mt-4">
     <p>
         <a href="https://jasonwatmore.com/post/2020/07/18/angular-10-user-registration-and-login-example-tutorial" target="_top">Angular 10 - User Registration and Login Example & Tutorial</a>
@@ -22,4 +23,28 @@
     <p>
         <a href="https://jasonwatmore.com" target="_top">JasonWatmore.com</a>
     </p>
+</div>-->
+
+
+<mat-toolbar color="primary">
+<button mat-raised-button color="warn" [matMenuTriggerFor]="menu" style="margin-right:15px ">Simple Menu</button>
+  <mat-menu #menu="matMenu">
+    <button mat-raised-button color="warn" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</button><br>
+    <button mat-raised-button color="warn" routerLink="/users" routerLinkActive="active">Users</button><br>
+    <button mat-raised-button color="warn" routerLink="contacts"> List</button><br>
+    <button mat-raised-button color="warn" routerLink="/delete-contact" routerLinkActive="active">DeleteContact</button><br>
+  </mat-menu>
+  <button mat-raised-button color="warn" (click)="openDialog()">Add Contactor</button>
+  <span class="example-spacer"></span>
+      <span>Contact Application</span>
+  <span class="example-spacer"></span>
+  <button mat-raised-button color="warn" routerLink="/account/login" style="margin-right:15px "> Login</button>
+  <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+
+
+
+</mat-toolbar>
+<div class="app-container" [ngClass]="{ 'bg-light': user }">
+  <alert></alert>
+  <router-outlet></router-outlet>
 </div>
