@@ -20,8 +20,9 @@ export class ContactService {
   getContactorById(id: string):Observable<Contact>{
     return this.http.get<Contact>(`http://localhost:8080/api/contact/foruser/${id}`);
   }
-  getAll():Observable<PageContact>{
-    return this.http.get<PageContact>(`http://localhost:8080/api/contact/foruser?pageNo=1`)
+  getAll(pageNumber: string):Observable<PageContact>{
+    return this.http.get<PageContact>(`http://localhost:8080/api/contact/foruser?pageNo=${pageNumber}`)
+    console.log(pageNumber)
   }
 
   delete(id: string){

@@ -17,13 +17,16 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatMenuModule} from '@angular/material/menu';
 
-import {ListContactComponent} from "./contact/list-contact/list-contact.component";;
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-;
-import { DialogComponent } from './dialog/dialog.component'
-;
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogComponent } from './dialog/dialog.component';
 import { PaginatorComponent } from './paginator/paginator.component'
-import {MatTableModule} from "@angular/material/table";
+import { MatTableModule} from "@angular/material/table";
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { en_US } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en'
+
+registerLocaleData(en);
 @NgModule({
   imports: [
     BrowserModule,
@@ -46,13 +49,13 @@ import {MatTableModule} from "@angular/material/table";
         AppComponent,
         AlertComponent,
         HomeComponent,
-      ListContactComponent,
       DialogComponent,
       PaginatorComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },,
+        { provide: NZ_I18N, useValue: en_US }
     ],
     bootstrap: [AppComponent]
 })

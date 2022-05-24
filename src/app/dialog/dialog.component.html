@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Contactor</h1>
+<div mat-dialog-content>
+  <form [formGroup]="contactForm">
+    <mat-form-field appearance="fill">
+      <mat-label>First Name</mat-label>
+      <input formControlName="firstName" matInput placeholder="First Name">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Second Name</mat-label>
+      <input formControlName="secondName"matInput placeholder="Second Name">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput placeholder="Email">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Phone Number</mat-label>
+      <span matPrefix>&nbsp;</span>
+      <input formControlName="phoneNumber" type="tel" matInput placeholder="+36304064123">
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Company Id</mat-label>
+      <input formControlName="companyId" matInput placeholder="Company Id">
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close> Close</button>
+  <button style="margin-left: 10px;" mat-raised-button color="primary" (click)="addContact()">Save</button>
+</div>
+
