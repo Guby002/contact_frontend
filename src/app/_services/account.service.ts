@@ -1,8 +1,8 @@
 ﻿import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {BehaviorSubject, Observable, throwError} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
 
 
 import { User } from '../_models';
@@ -10,9 +10,12 @@ import {environment} from "../../environments/environment";
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
-    private userSubject: BehaviorSubject<User>;
+    public userSubject: BehaviorSubject<User>;
     public user: Observable<User>;
-
+    public _error: boolean=false;
+  getUserType() {
+    return localStorage.getItem('user');
+  }
     constructor(
         private router: Router,
         private http: HttpClient
@@ -27,21 +30,24 @@ export class AccountService {
 
     login({username, password}: { username: any, password: any }) {
         return this.http.post<User>(`http://localhost:8080/api/auth/login`, { username, password })
-            .pipe(map(user => {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('user', JSON.stringify(user));
-                this.userSubject.next(user);
-                return user;
+            .pipe(
+            map(user => {
+             if (user.username==undefined) {
+                this._error=true;
+                console.log(this._error)
+              }
+             localStorage.setItem('user', JSON.stringify(user));
+              this.userSubject.next(user);
+              return user;
             }));
     }
-
     logout() {
         // remove user from local storage and set current user to null
         localStorage.removeItem('user');
         this.userSubject.next(null);
         this.router.navigate(['/account/login']);
+    //  window.location.reload();
     }
-
     register(user: User) {
         return this.http.post(`${environment.apiUrl}/users/register`, user);
     }

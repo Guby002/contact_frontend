@@ -1,37 +1,57 @@
-﻿import { Component } from '@angular/core';
+﻿import {Component, OnInit} from '@angular/core';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 import { AccountService } from './_services';
 import {User} from "./_models";
 import {DialogComponent} from "./dialog/dialog.component";
-import {MatPaginator} from "@angular/material/paginator";
-import {PAGE_UP} from "@angular/cdk/keycodes";
-import {PaginatorComponent} from "./paginator/paginator.component";
+import {AuthGuard} from "./_helpers";
+import {Router} from "@angular/router";
 
 
 @Component({ selector: 'app', templateUrl: 'app.component.html' })
-export class AppComponent {
-  get user(): User {
-    return this._user;
-  }
+export class AppComponent implements OnInit  {
+
+
+  userType : string | undefined;
+  private _user: User;
+
 
   set user(value: User) {
     this._user = value;
   }
-    private _user: User;
+  get user(): User {
+    return this._user;
+  }
+
 
     constructor(private accountService: AccountService,
                 private dialog: MatDialog,
               ) {
-        this.accountService.user.subscribe(x => this._user = x);
     }
 
-    openDialog() {
-     this.dialog.open(DialogComponent, {
-          width:'30%'
+  ngOnInit(){
+      this.accountService.userSubject.subscribe(x => {
+        this._user = x;
+        if(x) {
+          if (this._user.roles.includes('CREATE')) {
+            this.userType = 'ADMIN';
+          } else {
+            this.userType = 'USER';
+          }
+        }else{
+          this.userType=undefined;
+        }
       });
-    }
-    logout() {
-        this.accountService.logout();
-    }
+
+  }
+        openDialog()
+        {
+          this.dialog.open(DialogComponent, {
+            width: '30%'
+          });
+        }
+        logout()
+        {
+          this.accountService.logout();
+        }
 }

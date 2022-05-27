@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AccountService, AlertService } from '../_services';
+import {normalizeExtraEntryPoints} from "@angular-devkit/build-angular/src/webpack/utils/helpers";
 
 @Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private accountService: AccountService,
+        public accountService: AccountService,
         private alertService: AlertService
     ) { }
 
@@ -44,15 +45,23 @@ export class LoginComponent implements OnInit {
         this.accountService.login({username: this.f.username.value, password: this.f.password.value})
             .pipe(first())
             .subscribe({
-                next: () => {
-                    // get return url from query parameters or default to home page
-                    const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-                    this.router.navigateByUrl(returnUrl);
-                },
+              next: () => {
+                console.log()
+              //  window.location.reload();
+              //  get return url from query parameters or default to home page
+              if(!this.accountService._error) {
+                this.router.navigate(['home']);
+              }
+              else{
+                this.router.navigate(['login']);
+              }
+              },
                 error: error => {
                     this.alertService.error(error);
+
                     this.loading = false;
                 }
             });
+
     }
 }

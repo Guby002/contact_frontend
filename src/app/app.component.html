@@ -1,19 +1,19 @@
 <mat-toolbar color="primary">
-<button mat-raised-button color="warn" [matMenuTriggerFor]="menu" style="margin-right:15px ">Simple Menu</button>
-  <mat-menu #menu="matMenu">
-    <button mat-raised-button color="warn" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</button><br>
-    <button mat-raised-button color="warn" routerLink="/users" routerLinkActive="active">Users</button><br>
-    <button mat-raised-button color="warn" routerLink="contacts"> List</button><br>
-    <button mat-raised-button color="warn" routerLink="/delete-contact" routerLinkActive="active">DeleteContact</button><br>
-  </mat-menu>
-  <button mat-raised-button color="warn" (click)="openDialog()">Add Contactor</button>
-  <span class="example-spacer"></span>
-      <span>Contact Application</span>
-  <span class="example-spacer"></span>
-  <button mat-raised-button color="warn" routerLink="/account/login" style="margin-right:15px "> Login</button>
-  <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+  <button mat-raised-button color="warn" [matMenuTriggerFor]="menu" style="margin-right:15px ">Simple Menu</button>
+    <mat-menu #menu="matMenu">
+      <button  mat-raised-button color="warn" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</button><br>
+      <button  *ngIf="(userType === 'USER' || userType === 'ADMIN')"mat-raised-button color="warn" routerLink="contacts"> List</button><br>
+      <button  *ngIf="userType === 'ADMIN'"mat-raised-button color="warn" routerLink="/users" routerLinkActive="active">Users</button><br>
+      <button  *ngIf="userType === 'ADMIN'"mat-raised-button color="warn" routerLink="/delete-contact" routerLinkActive="active">DeleteContact</button><br>
+    </mat-menu>
+    <button *ngIf="userType === 'ADMIN'" mat-raised-button color="warn" (click)="openDialog()">Add Contactor</button>
+    <span class="example-spacer"></span>
+        <span>Contact Application {{userType}}</span>
+    <span class="example-spacer"></span>
 
-  <router-outlet></router-outlet>
+
+    <button mat-raised-button color="warn" routerLink="/account/login" style="margin-right:15px "> Login</button>
+    <button mat-raised-button color="warn" (click)="logout()">Logout</button>
 </mat-toolbar>
 
 <div class="app-container" [ngClass]="{ 'bg-light': user }">

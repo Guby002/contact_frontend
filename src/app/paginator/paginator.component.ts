@@ -28,8 +28,8 @@ export class PaginatorComponent implements OnInit{
     )
   }
   deleteContact(id:string){
-    this.contactService.delete(id).subscribe();
-    this.ngOnInit();
+    this.contactService.delete(id).subscribe(() =>  this.ngOnInit());
+
   }
   OnPageChange(event : PageEvent){
     console.log(event);
