@@ -4,11 +4,10 @@ import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { AccountService } from './_services';
 import {User} from "./_models";
 import {DialogComponent} from "./dialog/dialog.component";
-import {AuthGuard} from "./_helpers";
-import {Router} from "@angular/router";
 
 
-@Component({ selector: 'app', templateUrl: 'app.component.html' })
+
+@Component({  selector: 'my-app',templateUrl: 'app.component.html',styleUrls: ['./app.component.css'] })
 export class AppComponent implements OnInit  {
 
 

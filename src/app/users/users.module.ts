@@ -6,13 +6,17 @@ import { UsersRoutingModule } from './users-routing.module';
 import { LayoutComponent } from './layout.component';
 import { ListComponent } from './list.component';
 import { AddEditComponent } from './add-edit.component';
+import {MatIconModule} from "@angular/material/icon";
+import {AppModule} from "../app.module";
 
 @NgModule({
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        UsersRoutingModule
-    ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    UsersRoutingModule,
+    MatIconModule,
+    AppModule
+  ],
     declarations: [
         LayoutComponent,
         ListComponent,

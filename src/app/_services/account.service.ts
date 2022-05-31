@@ -32,10 +32,6 @@ export class AccountService {
         return this.http.post<User>(`http://localhost:8080/api/auth/login`, { username, password })
             .pipe(
             map(user => {
-             if (user.username==undefined) {
-                this._error=true;
-                console.log(this._error)
-              }
              localStorage.setItem('user', JSON.stringify(user));
               this.userSubject.next(user);
               return user;
