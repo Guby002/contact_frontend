@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ContactService} from "../_services/contact.service";
 import {Observable} from "rxjs";
 import {Router, RouterModule} from "@angular/router";
-import {MatDialog} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
+import {Contact} from "../_models/contact";
 
 @Component({
   selector: 'app-dialog',

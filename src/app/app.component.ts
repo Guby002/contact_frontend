@@ -46,7 +46,6 @@ export class AppComponent implements OnInit  {
         openDialog()
         {
           this.dialog.open(DialogComponent, {
-            width: '30%'
           });
         }
         logout()

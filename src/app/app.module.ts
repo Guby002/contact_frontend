@@ -24,15 +24,18 @@ import { PaginatorComponent } from './paginator/paginator.component'
 import { MatTableModule} from "@angular/material/table";
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
-import { registerLocaleData } from '@angular/common';
+import {CommonModule, registerLocaleData} from '@angular/common';
 import en from '@angular/common/locales/en'
 import {MatRippleModule} from "@angular/material/core";
 import {TooltipDirective} from "./tooltip/tooltip.directive";
-
+import {UsersModule} from "./users/users.module";
+import {AccountModule} from "./account/account.module";;
+import { UpdatedialogComponent } from './updatedialog/updatedialog.component'
 
 registerLocaleData(en);
 @NgModule({
   imports: [
+    CommonModule,
     BrowserModule,
     FlexLayoutModule,
     ReactiveFormsModule,
@@ -51,6 +54,8 @@ registerLocaleData(en);
     FormsModule,
     MatTableModule,
     MatSidenavModule,
+    UsersModule,
+    AccountModule
   ],
   declarations: [
     AppComponent,
@@ -58,7 +63,8 @@ registerLocaleData(en);
     HomeComponent,
     DialogComponent,
     PaginatorComponent,
-    TooltipDirective
+    TooltipDirective,
+    UpdatedialogComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

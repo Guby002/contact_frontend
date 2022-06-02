@@ -15,7 +15,7 @@
     <td>{{contact.email}}</td>
     <td>{{contact.phoneNumber}}</td>
     <td style="white-space: nowrap">
-      <a (click)="openDialog(contact.id)" class="btn btn-sm btn-primary mr-1"><mat-icon [tooltip]="'Edit'">edit</mat-icon></a>
+      <a (click)="updateContact(contact)" class="btn btn-sm btn-primary mr-1"><mat-icon [tooltip]="'Edit'">edit</mat-icon></a>
       <button (click)="deleteContact(contact.id)" class="btn btn-sm btn-danger" [disabled]="contact.isDeleting">
         <span *ngIf="contact.isDeleting" class="spinner-border spinner-border-sm"></span>
         <mat-icon  [tooltip]="'Delete'" >delete</mat-icon>

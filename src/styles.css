@@ -19,9 +19,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 .form-group,label{
   padding-bottom: 15px;
 }
-.card{
-  background: #eeebeb;
-}
 
 
 .tooltip-container {

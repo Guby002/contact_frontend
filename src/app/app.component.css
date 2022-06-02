@@ -50,3 +50,9 @@ button{
 .mat-button {
   padding: 15px;
 }
+.card{
+  background: #eeebeb;
+  width: 40%;
+  margin-right: auto;
+  margin-left: auto;
+}

@@ -7,7 +7,8 @@ import { LayoutComponent } from './layout.component';
 import { ListComponent } from './list.component';
 import { AddEditComponent } from './add-edit.component';
 import {MatIconModule} from "@angular/material/icon";
-import {AppModule} from "../app.module";
+import {MatTooltipModule} from "@angular/material/tooltip";
+
 
 @NgModule({
   imports: [
@@ -15,12 +16,12 @@ import {AppModule} from "../app.module";
     ReactiveFormsModule,
     UsersRoutingModule,
     MatIconModule,
-    AppModule
+    MatTooltipModule
   ],
     declarations: [
         LayoutComponent,
         ListComponent,
-        AddEditComponent
-    ]
+        AddEditComponent,
+    ],
 })
 export class UsersModule { }

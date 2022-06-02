@@ -35,6 +35,7 @@ export class TooltipDirective implements OnDestroy{
     popup.setAttribute("class", "tooltip-container");
     popup.style.top = y.toString() + "px";
     popup.style.left = x.toString() + "px";
+    popup.style.zIndex=String(1001);
     document.body.appendChild(popup);
     this.myPopup = popup;
     setTimeout(() => {

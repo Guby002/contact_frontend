@@ -5,6 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {ContactService} from "../_services/contact.service";
 import {DialogComponent} from "../dialog/dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import {UpdatedialogComponent} from "../updatedialog/updatedialog.component";
 
 @Component({
   selector: 'app-paginator',
@@ -29,29 +30,33 @@ export class PaginatorComponent implements OnInit{
   }
   deleteContact(id:string){
     this.contactService.delete(id).subscribe(() =>  this.ngOnInit());
-
   }
+
+  updateContact(contact:Contact){
+    this.openDialog(contact.id);
+  }
+
   OnPageChange(event : PageEvent){
     console.log(event);
     this.pageNumber=(event.pageIndex+1).toString();
     this.ngOnInit()
   }
   openDialog(id:string){
-    this.contactService.getContactorById(id).subscribe(data =>{
-      this.contact = data
-      console.log(this.contact)
-      this.dialog.open(DialogComponent, {
-        width:'30%',
-        data:{
-        firstName:this.contact.firstName,
-          secondName:this.contact.secondName,
-          email:this.contact.email,
-          phoneNumber:this.contact.phoneNumber,
-          companyId:this.contact.companyId,
-        }
+      this.contactService.getContactorById(id).subscribe(data => {
+        this.contact = data
+        console.log(this.contact)
+        this.dialog.open(UpdatedialogComponent, {
+        //  width: '30%',
+          data: {
+            contact: this.contact
+            // firstName: this.contact.firstName,
+            //   secondName:this.contact.secondName,
+            //   email:this.contact.email,
+            //   phoneNumber:this.contact.phoneNumber,
+            //   companyId:this.contact.companyId,
+          }
+        });
       });
-
-    });
    this.ngOnInit();
   }
 }

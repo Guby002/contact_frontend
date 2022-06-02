@@ -1,9 +1,12 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import {Component, ElementRef, Inject, InjectionToken, OnInit} from '@angular/core';
 import { first } from 'rxjs/operators';
 
 import { AccountService } from '../_services';
+import {TooltipDirective} from "../tooltip/tooltip.directive";
 
-@Component({ templateUrl: 'list.component.html' })
+
+
+@Component({ templateUrl: 'list.component.html'  })
 export class ListComponent implements OnInit {
     users = null;
 
