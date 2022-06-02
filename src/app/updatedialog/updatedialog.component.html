@@ -1,6 +1,5 @@
 <h1 mat-dialog-title>Contactor</h1>
-<div class="new-dialog">
-<div mat-dialog-content>
+<div class="new-dialog"mat-dialog-content style="width: 100%">
   <form [formGroup]="contactForm">
     <mat-form-field appearance="fill">
       <mat-label>First Name</mat-label>
@@ -27,8 +26,6 @@
   </form>
 </div>
 <div mat-dialog-actions [align]="'end'">
-  <button mat-raised-button color="warn" mat-dialog-close  [tooltip]="'Delete'">	<mat-icon>cancel</mat-icon></button>
-  <button style="margin-left: 10px;" mat-raised-button color="primary" (click)="addContact()" mat-dialog-close>	<mat-icon>save</mat-icon></button>
+  <button mat-raised-button color="warn" mat-dialog-close>	<mat-icon>cancel</mat-icon></button>
+  <button style="margin-left: 10px;" mat-raised-button color="primary" (click)="updateContact()" mat-dialog-close>	<mat-icon>save</mat-icon></button>
 </div>
-</div>
-

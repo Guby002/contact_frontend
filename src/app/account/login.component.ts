@@ -4,18 +4,20 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AccountService, AlertService } from '../_services';
+import {User} from "../_models";
 
 @Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
     form: FormGroup;
     loading = false;
     submitted = false;
-
+    user: User;
+    error: boolean;
     constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private accountService: AccountService,
+        public accountService: AccountService,
         private alertService: AlertService
     ) { }
 
@@ -44,15 +46,15 @@ export class LoginComponent implements OnInit {
         this.accountService.login({username: this.f.username.value, password: this.f.password.value})
             .pipe(first())
             .subscribe({
-                next: () => {
-                    // get return url from query parameters or default to home page
-                    const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-                    this.router.navigateByUrl(returnUrl);
-                },
-                error: error => {
-                    this.alertService.error(error);
+              next: ()  => {
+                this.router.navigate(['home']);
+              },
+                error: () => {
+                    this.alertService.error("Wrong username or password");
                     this.loading = false;
+                    this.error=true;
                 }
             });
+
     }
 }

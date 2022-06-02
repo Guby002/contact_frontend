@@ -1,5 +1,5 @@
 <table class="table table-striped">
-  <thead>
+  <thead style="overflow-x:auto;">
   <tr>
     <th style="width: 30%">Name</th>
     <th style="width: 30%">Company Name</th>
@@ -15,10 +15,10 @@
     <td>{{contact.email}}</td>
     <td>{{contact.phoneNumber}}</td>
     <td style="white-space: nowrap">
-      <a (click)="openDialog(contact.id)" class="btn btn-sm btn-primary mr-1">Edit</a>
-      <button (click)="deleteContact(contact.id)" class="btn btn-sm btn-danger btn-delete-user" title="Delete" [disabled]="contact.isDeleting">
+      <a (click)="updateContact(contact)" class="btn btn-sm btn-primary mr-1"><mat-icon [tooltip]="'Edit'">edit</mat-icon></a>
+      <button (click)="deleteContact(contact.id)" class="btn btn-sm btn-danger" [disabled]="contact.isDeleting">
         <span *ngIf="contact.isDeleting" class="spinner-border spinner-border-sm"></span>
-        <span *ngIf="!contact.isDeleting">Delete</span>
+        <mat-icon  [tooltip]="'Delete'" >delete</mat-icon>
       </button>
     </td>
   </tr>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ContactService} from "../../_services/contact.service";
+import {ContactService} from "../_services/contact.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import { AlertService} from "../../_services";
+import { AlertService} from "../_services";
 
 @Component({
   templateUrl: './delete-contact.component.html',

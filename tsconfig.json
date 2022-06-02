@@ -24,13 +24,18 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "types": [
+      "node"
+    ],
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictNullChecks": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
   }
 }

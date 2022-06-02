@@ -31,5 +31,9 @@ export class ContactService {
   create( contact : any):Observable<any>{
     return this.http.post(`http://localhost:8080/api/contact`,contact)
   }
+  update (contact : any):Observable<any> {
+    console.log("http://localhost:8080/api/contact/",contact.id)
+    return this.http.put(`http://localhost:8080/api/contact/${contact.id}`,contact);
+  }
 }
 

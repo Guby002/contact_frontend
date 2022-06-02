@@ -5,7 +5,8 @@ import { LayoutComponent } from './layout.component';
 import { ListComponent } from './list.component';
 import { AddEditComponent } from './add-edit.component';
 
-const routes: Routes = [
+
+const userRoutes: Routes = [
     {
         path: '', component: LayoutComponent,
         children: [
@@ -17,7 +18,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
+    imports: [RouterModule.forChild(userRoutes)],
     exports: [RouterModule]
 })
 export class UsersRoutingModule { }
